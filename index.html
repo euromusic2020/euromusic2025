@@ -7,49 +7,8 @@
   <!-- bootstrap & fontawesome css -->
   <link href="http://cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="http://cdn.jsdelivr.net/fontawesome/4.1.0/css/font-awesome.min.css" />
-
-  <!-- BootstrapValidator CSS -->
-  <link rel="stylesheet"
-    href="http://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" />
-  <link rel="stylesheet" href="./styles.css">
-  <!-- jQuery and Bootstrap JS -->
-  <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
-  <script type="text/javascript" src="http://cdn.jsdelivr.net/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-  <!-- BootstrapValidator JS -->
-  <script type="text/javascript"
-    src="http://cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
-
-  <!-- Animated Loading Icon -->
-  <style type="text/css">
-    .glyphicon-refresh-animate {
-      -animation: spin .7s infinite linear;
-      -webkit-animation: spin2 .7s infinite linear;
-    }
-
-    @-webkit-keyframes spin2 {
-      from {
-        -webkit-transform: rotate(0deg);
-      }
-
-      to {
-        -webkit-transform: rotate(360deg);
-      }
-    }
-
-    @keyframes spin {
-      from {
-        transform: scale(1) rotate(0deg);
-      }
-
-      to {
-        transform: scale(1) rotate(360deg);
-      }
-    }
-  </style>
-
+  <link rel='stylesheet' href='styles.css' />
 </head>
-
 <body>
   <div class="container">
     <h1>EUROMUSIC 2020</h1>
@@ -57,7 +16,7 @@
       <div class="form-tab" id="comp_day_tab">
         <div class="form-group">
           <label class="control-label" for="day_of_competition">
-            Deň súťaže
+             Deň súťaže
             <select name="day_of_competition" id="day_of_competition">
               <option value="6">6.máj 2020 (streda), RUŽOMBEROK</option>
               <option value="18">18.máj 2020 (pondelok), RUŽOMBEROK</option>
@@ -70,7 +29,7 @@
       <div class="form-tab" id="instrument_tab">
         <div class="form-group">
           <label class="control-label" for="category">
-            Kategória
+             Kategória
             <select name="category" id="category">
               <option value="klavir">Klavír</option>
             </select>
@@ -80,38 +39,38 @@
       <div class="form-tab" id="details_tab">
         <div class="form-group">
           <label class="control-label" for="fullname">
-            Meno a priezvisko súťažiaceho
-            <input class="form-control" type="text" name="fullname" id="fullname">
+             Meno a priezvisko súťažiaceho:
+            <input  type="text" name="fullname" id="fullname">
           </label>
         </div>
         <div class="form-group">
           <label class="control-label" for="level">
-            Úroveň
-            <input class="form-control" type="text" name="level" id="level">
+             Úroveň:
+            <input  type="text" name="level" id="level">
           </label>
         </div>
         <div class="form-group">
           <label class="control-label" for="grade">
-            Ročník žiaka v SZUŠ Jánoš
+             Ročník žiaka v SZUŠ Jánoš:
             <input type="text" name="grade" id="grade">
           </label>
         </div>
         <div class="form-group">
           <label class="control-label" for="birth_date">
-            Dátum narodenia
-            <input class="form-control" type="date" name="birth_date" id="birth_date">
+             Dátum narodenia:
+            <input type="date" name="birth_date" id="birth_date">
           </label>
         </div>
         <div class="form-group">
           <label class="control-label" for="teacher">
-            Pedagóg
-            <input class="form-control" type="text" name="teacher" id="teacher">
+             Pedagóg:
+            <input  type="text" name="teacher" id="teacher">
           </label>
         </div>
         <div class="form-group">
           <label class="control-label" for="corepetitor">
-            Korepetítor
-            <input class="form-control" type="text" name="corepetitor" id="corepetitor">
+             Korepetítor:
+            <input  type="text" name="corepetitor" id="corepetitor">
           </label>
         </div>
         <input class="form-control" type="hidden" name="age" id="age">
@@ -119,46 +78,46 @@
       <div class="form-tab" id="songs_tab">
         <h2>Súťažný repertoár</h2>
         <div class="form-sub-tab" id="song1">
-          <span>Skladba z aktuálneho repertoáru Trinity Guildhall London
+          <span> Skladba z aktuálneho repertoáru Trinity Guildhall London
             príslušnej úrovne</span>
           <div class="form-group">
             <label class="control-label" for="composer_1">
-              Autor
-              <input class="form-control" type="text" name="composer_1" id="composer_1">
+               Autor:
+              <input type="text" name="composer_1" id="composer_1">
             </label>
           </div>
           <div class="form-group">
             <label class="control-label" for="title_1">
-              Názov skladby
-              <input class="form-control" type="text" name="title_1" id="title_1">
+               Názov skladby:
+              <input type="text" name="title_1" id="title_1">
             </label>
           </div>
           <div class="form-group">
             <label class="control-label" for="length_1">
-              Minutáž skladby
-              <input class="form-control" type="time" name="length_1" id="length_1">
+               Minutáž skladby:
+              <input  type="time" name="length_1" id="length_1">
             </label>
           </div>
         </div>
         <div class="form-sub-tab" id="song2">
-          <span>Skladba z aktuálneho alebo staršieho repertoáru
+          <span> Skladba z aktuálneho alebo staršieho repertoáru
             Trinity Guildhall London príslušnej úrovne</span>
           <div class="form-group">
             <label class="control-label" for="composer_2">
-              Autor
-              <input class="form-control" type="text" name="composer_2" id="composer_2">
+               Autor:
+              <input  type="text" name="composer_2" id="composer_2">
             </label>
           </div>
           <div class="form-group">
             <label class="control-label" for="title_2">
-              Názov skladby
-              <input class="form-control" type="text" name="title_2" id="title_2">
+               Názov skladby:
+              <input  type="text" name="title_2" id="title_2">
             </label>
           </div>
           <div class="form-group">
             <label class="control-label" for="length_2">
-              Minutáž skladby
-              <input class="form-control" type="time" name="length_2" id="length_2">
+               Minutáž skladby:
+              <input  type="time" name="length_2" id="length_2">
             </label>
           </div>
         </div>
@@ -166,20 +125,20 @@
           <span>Ľubovoľný výber skladby príslušnej úrovne</span>
           <div class="form-group">
             <label class="control-label" for="composer_3">
-              Autor
-              <input class="form-control" type="text" name="composer_3" id="composer_3">
+               Autor:
+              <input  type="text" name="composer_3" id="composer_3">
             </label>
           </div>
           <div class="form-group">
             <label class="control-label" for="title_3">
-              Názov skladby
-              <input class="form-control" type="text" name="title_3" id="title_3">
+               Názov skladby:
+              <input  type="text" name="title_3" id="title_3">
             </label>
           </div>
           <div class="form-group">
             <label class="control-label" for="length_3">
-              Minutáž skladby
-              <input class="form-control" type="time" name="length_3" id="length_3">
+               Minutáž skladby:
+              <input  type="time" name="length_3" id="length_3">
             </label>
           </div>
         </div>
@@ -189,8 +148,8 @@
         <p>tu je vsetko: </p>
         <div class="form-group">
           <label class="control-label" for="email">
-            Email pre potvrdenie prihlášky
-            <input class="form-control" type="email" name="email" id="email">
+             Email pre potvrdenie prihlášky
+            <input  type="email" name="email" id="email">
           </label>
         </div>
         <div class="form-group">
