@@ -7,7 +7,7 @@
 
   <link rel="stylesheet" href="./styles.css">
   <!-- jQuery and Bootstrap JS -->
-  <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -23,9 +23,9 @@
           <label for="tab-1" class="tab-label">Registrácia</label>
           <div class="tab-content">
             <label class="control-label" for="day_of_competition">
-              Deň súťaže
+              Deň súťaže:
               <select name="day_of_competition" id="day_of_competition" onchange="changeCategories()">
-                <option disabled selected value>Vyberte možnosť</option>
+                <option disabled selected value>-----Vyberte možnosť-----</option>
                 <option value="6">6.máj 2020 (streda), RUŽOMBEROK</option>
                 <option value="18">18.máj 2020 (pondelok), RUŽOMBEROK</option>
                 <option value="19">19.máj 2020 (utorok), HRUŠTÍN</option>
@@ -33,7 +33,7 @@
               </select>
             </label>
             <label class="control-label" for="category">
-              Kategória
+              Kategória:
               <select name="category" id="category" onchange=removeCorepetitor()>
               </select>
             </label>
@@ -46,33 +46,35 @@
           <label for="tab-2" class="tab-label">Osobné údaje</label>
           <div class="tab-content">
             <label class="control-label" for="fullname">
-              Meno a priezvisko súťažiaceho
+              Meno a priezvisko súťažiaceho:
               <input class="form-control" type="text" name="fullname" id="fullname">
             </label>
             <label class="control-label" for="level">
-              Úroveň
+              Úroveň:
               <input class="form-control" type="text" name="level" id="level">
             </label>
             <label class="control-label" for="grade">
-              Ročník žiaka v SZUŠ Jánoš
+              Ročník žiaka v SZUŠ Jánoš:
               <input type="text" name="grade" id="grade">
             </label>
             <label class="control-label" for="birth_date">
-              Dátum narodenia
+              Dátum narodenia:
               <input class="form-control" type="date" name="birth_date" id="birth_date">
             </label>
+            <p>
+            </p>
             <label class="control-label" for="teacher">
-              Pedagóg
+              Pedagóg:
               <input class="form-control" type="text" name="teacher" id="teacher">
             </label>
             <label class="control-label" for="corepetitor">
               <span id="corepetitor-field">
-                Korepetítor
+                Korepetítor:
                 <input class="form-control" type="text" name="corepetitor" id="corepetitor">
             </label>
             </span>
             <input class="form-control" type="hidden" name="age" id="age">
-            <button type="button" class="arrow arrow-prev" onclick="goTo(0)"><</button> 
+            <button type="button" class="arrow arrow-prev" onclick="goTo(0)"><</button>
             <button type="button" class="arrow arrow-next" onclick="goTo(2)">>
             </button>
           </div>
@@ -84,18 +86,18 @@
             <h3>Skladba z aktuálneho repertoáru Trinity Guildhall London
               príslušnej úrovne</h3>
             <label class="control-label" for="composer_1">
-              Autor
+              Autor:
               <input class="form-control" type="text" name="composer_1" id="composer_1">
             </label>
             <label class="control-label" for="title_1">
-              Názov skladby
+              Názov skladby:
               <input class="form-control" type="text" name="title_1" id="title_1">
             </label>
             <label class="control-label" for="length_1">
-              Minutáž skladby
+              Minutáž skladby:
               <input class="form-control" type="time" name="length_1" id="length_1">
             </label>
-            <button type="button" class="arrow arrow-prev" onclick="goTo(1)"><</button> 
+            <button type="button" class="arrow arrow-prev" onclick="goTo(1)"><</button>
             <button type="button" class="arrow arrow-next" onclick="goTo(3)">>
             </button>
           </div>
@@ -107,18 +109,18 @@
             <h3>Skladba z aktuálneho alebo staršieho repertoáru
               Trinity Guildhall London príslušnej úrovne</h3>
             <label class="control-label" for="composer_2">
-              Autor
+              Autor:
               <input class="form-control" type="text" name="composer_2" id="composer_2">
             </label>
             <label class="control-label" for="title_2">
-              Názov skladby
+              Názov skladby:
               <input class="form-control" type="text" name="title_2" id="title_2">
             </label>
             <label class="control-label" for="length_2">
-              Minutáž skladby
+              Minutáž skladby:
               <input class="form-control" type="time" name="length_2" id="length_2">
             </label>
-            <button type="button" class="arrow arrow-prev" onclick="goTo(2)"><</button> 
+            <button type="button" class="arrow arrow-prev" onclick="goTo(2)"><</button>
             <button type="button" class="arrow arrow-next" onclick="goTo(4)">>
             </button>
           </div>
@@ -129,15 +131,15 @@
           <div class="tab-content">
             <h3>Ľubovoľný výber skladby príslušnej úrovne</h3>
             <label class="control-label" for="composer_3">
-              Autor
+              Autor:
               <input class="form-control" type="text" name="composer_3" id="composer_3">
             </label>
             <label class="control-label" for="title_3">
-              Názov skladby
+              Názov skladby:
               <input class="form-control" type="text" name="title_3" id="title_3">
             </label>
             <label class="control-label" for="length_3">
-              Minutáž skladby
+              Minutáž skladby:
               <input class="form-control" type="time" name="length_3" id="length_3">
             </label>
             <button type="button" class="arrow arrow-prev" onclick="goTo(3)"><</button>
@@ -151,13 +153,13 @@
           <div class="tab-content">
             <input class="form-control" type="hidden" name="total_length" id="total_length">
             <label class="control-label" for="email">
-              Email pre potvrdenie prihlášky
+              Email pre potvrdenie prihlášky:
               <input class="form-control" type="email" name="email" id="email">
             </label>
 
             <button type="reset" class="btn btn-secondary">Vymazať</button>
             <button type="submit" class="btn btn-primary" id="postForm">Odoslať</button>
-            <button type="button" class="arrow arrow-prev" onclick="goTo(4)"><</button> 
+            <button type="button" class="arrow arrow-prev" onclick="goTo(4)"><</button>
           </div>
         </div>
         <div class="tab">
