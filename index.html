@@ -6,173 +6,232 @@
   <title>Prihláška Euromusic 2020</title>
 
   <link rel="stylesheet" href="./styles.css">
-  <!-- jQuery and Bootstrap JS -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
+  <!-- jQuery and Bootstrap -->
+  <script type="text/javascript" src="./vendors/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="./vendors/jquery.validate.min.js"></script>
 </head>
 
 <body>
   <!-- Don't ask me why, I didn't create this monstrosity -->
-  <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-<div id="container" class="overlay">
-  <h1>Euromusic 2020</h1>
-  <form id="myForm" role="form">
-    <div class="wrapper">
-      <div class="tabs">
-        <div class="tab">
-          <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
-          <label for="tab-1" class="tab-label">Registrácia</label>
-          <div class="tab-content">
-            <label class="control-label" for="day_of_competition">
-              Deň súťaže:
-              <select name="day_of_competition" id="day_of_competition" onchange="changeCategories()">
-                <option disabled selected value>-----Vyberte možnosť-----</option>
-                <option value="6">6.máj 2020 (streda), RUŽOMBEROK</option>
-                <option value="18">18.máj 2020 (pondelok), RUŽOMBEROK</option>
-                <option value="19">19.máj 2020 (utorok), HRUŠTÍN</option>
-                <option value="22">22.máj 2020 (piatok), RUŽOMBEROK</option>
-              </select>
-            </label>
-            <label class="control-label" for="category">
-              Kategória:
-              <select name="category" id="category" onchange=removeCorepetitor()>
-              </select>
-            </label>
-            <!-- <button type="button" class="arrow arrow-prev" onclick="goTo(0)"><</button> -->
-            <button type="button" class="arrow arrow-next" onclick="goTo(1)">></button>
+  <div class="lds-spinner">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div id="container" class="overlay">
+    <img src="./assets/logo.png" alt="Euromusic 2020" id="logo">
+    <form id="myForm" role="form" autocomplete="off">
+      <div class="wrapper">
+        <div class="tabs">
+          <div class="tab">
+            <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
+            <label for="tab-1" class="tab-label">Registrácia</label>
+            <div class="tab-content">
+              <div class="form-group">
+                <label class="control-label" for="day_of_competition">
+                  Deň súťaže:
+                  <select name="day_of_competition" id="day_of_competition" onchange="changeCategories()" required>
+                    <option disabled selected value="">-----Vyberte možnosť-----</option>
+                    <option value="6">6.máj 2020 (streda), RUŽOMBEROK</option>
+                    <option value="18">18.máj 2020 (pondelok), RUŽOMBEROK</option>
+                    <option value="19">19.máj 2020 (utorok), HRUŠTÍN</option>
+                    <option value="22">22.máj 2020 (piatok), RUŽOMBEROK</option>
+                  </select>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="category">
+                  Kategória:
+                  <select name="category" id="category" onchange=removeCorepetitor() required>
+                  </select>
+                </label>
+              </div>
+              <!-- <button type="button" class="arrow arrow-prev" onclick="goTo(0)"><</button> -->
+              <button type="button" class="arrow arrow-next" onclick="goTo(1)">></button>
+            </div>
           </div>
-        </div>
-        <div class="tab">
-          <input type="radio" name="css-tabs" id="tab-2" class="tab-switch" disabled>
-          <label for="tab-2" class="tab-label">Osobné údaje</label>
-          <div class="tab-content">
-            <label class="control-label" for="fullname">
-              Meno a priezvisko súťažiaceho:
-              <input class="form-control" type="text" name="fullname" id="fullname">
-            </label>
-            <label class="control-label" for="level">
-              Úroveň:
-              <input class="form-control" type="text" name="level" id="level">
-            </label>
-            <label class="control-label" for="grade">
-              Ročník žiaka v SZUŠ Jánoš:
-              <input type="text" name="grade" id="grade">
-            </label>
-            <label class="control-label" for="birth_date">
-              Dátum narodenia:
-              <input class="form-control" type="date" name="birth_date" id="birth_date">
-            </label>
-            <p>
-            </p>
-            <label class="control-label" for="teacher">
-              Pedagóg:
-              <input class="form-control" type="text" name="teacher" id="teacher">
-            </label>
-            <label class="control-label" for="corepetitor">
-              <span id="corepetitor-field">
-                Korepetítor:
-                <input class="form-control" type="text" name="corepetitor" id="corepetitor">
-            </label>
-            </span>
-            <input class="form-control" type="hidden" name="age" id="age">
-            <button type="button" class="arrow arrow-prev" onclick="goTo(0)"><</button>
-            <button type="button" class="arrow arrow-next" onclick="goTo(2)">>
-            </button>
+          <div class="tab">
+            <input type="radio" name="css-tabs" id="tab-2" class="tab-switch" disabled>
+            <label for="tab-2" class="tab-label">Osobné údaje</label>
+            <div class="tab-content" id="main-tab-content">
+              <div class="form-group">
+                <label class="control-label" for="fullname">
+                  Meno a priezvisko súťažiaceho:
+                  <input class="form-control" type="text" name="fullname" id="fullname" required>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="grade">
+                  Ročník žiaka v SZUŠ Jánoš:
+                  <input type="text" name="grade" id="grade" required>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="level">
+                  Úroveň:
+                  <input class="form-control" type="text" name="level" id="level" required>
+                </label>
+                <label class="control-label" for="birth_date">
+                  Dátum narodenia:
+                  <input class="form-control" type="date" name="birth_date" id="birth_date" required min="1990-01-01" max="2020-01-01">
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="teacher">
+                  Pedagóg:
+                  <input class="form-control" type="text" name="teacher" id="teacher" required>
+                </label>
+                <label class="control-label" for="corepetitor">
+                  <span id="corepetitor-field">
+                    Korepetítor:
+                    <input class="form-control" type="text" name="corepetitor" id="corepetitor">
+                  </span>
+                </label>
+              </div>
+              <input class="form-control" type="number" name="age" id="age" hidden>
+              <button type="button" class="arrow arrow-prev" onclick="goTo(0)">
+                <</button> <button type="button" class="arrow arrow-next" onclick="goTo(2)">>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="tab">
-          <input type="radio" name="css-tabs" id="tab-3" class="tab-switch" disabled>
-          <label for="tab-3" class="tab-label">1. skladba</label>
-          <div class="tab-content">
-            <h3>Skladba z aktuálneho repertoáru Trinity Guildhall London
-              príslušnej úrovne</h3>
-            <label class="control-label" for="composer_1">
-              Autor:
-              <input class="form-control" type="text" name="composer_1" id="composer_1">
-            </label>
-            <label class="control-label" for="title_1">
-              Názov skladby:
-              <input class="form-control" type="text" name="title_1" id="title_1">
-            </label>
-            <label class="control-label" for="length_1">
-              Minutáž skladby:
-              <input class="form-control" type="time" name="length_1" id="length_1">
-            </label>
-            <button type="button" class="arrow arrow-prev" onclick="goTo(1)"><</button>
-            <button type="button" class="arrow arrow-next" onclick="goTo(3)">>
-            </button>
+          <div class="tab">
+            <input type="radio" name="css-tabs" id="tab-3" class="tab-switch" disabled>
+            <label for="tab-3" class="tab-label">1. skladba</label>
+            <div class="tab-content tab-content-MD">
+              <h3>Skladba z aktuálneho repertoáru Trinity Guildhall London
+                príslušnej úrovne</h3>
+              <div class="form-group">
+              <label class="control-label" for="composer_1">
+                Autor:
+                <input class="form-control" type="text" name="composer_1" id="composer_1" required>
+              </label>
+              </div>
+              <div class="form-group">
+              <label class="control-label" for="title_1">
+                Názov skladby:
+                <input class="form-control" type="text" name="title_1" id="title_1" required>
+              </label>
+              </div>
+              <div class="form-group">
+              <label class="control-label" for="length_1">
+                Minutáž skladby:
+                <input class="form-control" name="length_1" id="length_1" type="time" required 
+                 maxlength="5" minlength="5">
+              </label>
+              </div>
+              <button type="button" class="arrow arrow-prev" onclick="goTo(1)">
+                <</button> <button type="button" class="arrow arrow-next" onclick="goTo(3)">>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="tab">
-          <input type="radio" name="css-tabs" id="tab-4" class="tab-switch" disabled>
-          <label for="tab-4" class="tab-label">2. skladba</label>
-          <div class="tab-content">
-            <h3>Skladba z aktuálneho alebo staršieho repertoáru
-              Trinity Guildhall London príslušnej úrovne</h3>
-            <label class="control-label" for="composer_2">
-              Autor:
-              <input class="form-control" type="text" name="composer_2" id="composer_2">
-            </label>
-            <label class="control-label" for="title_2">
-              Názov skladby:
-              <input class="form-control" type="text" name="title_2" id="title_2">
-            </label>
-            <label class="control-label" for="length_2">
-              Minutáž skladby:
-              <input class="form-control" type="time" name="length_2" id="length_2">
-            </label>
-            <button type="button" class="arrow arrow-prev" onclick="goTo(2)"><</button>
-            <button type="button" class="arrow arrow-next" onclick="goTo(4)">>
-            </button>
+          <div class="tab">
+            <input type="radio" name="css-tabs" id="tab-4" class="tab-switch" disabled>
+            <label for="tab-4" class="tab-label">2. skladba</label>
+            <div class="tab-content tab-content-MD">
+              <h3>Skladba z aktuálneho alebo staršieho repertoáru
+                Trinity Guildhall London príslušnej úrovne</h3>
+                <div class="form-group">
+              <label class="control-label" for="composer_2">
+                Autor:
+                <input class="form-control" type="text" name="composer_2" id="composer_2" required>
+              </label>
+                </div>
+                <div class="form-group">
+              <label class="control-label" for="title_2">
+                Názov skladby:
+                <input class="form-control" type="text" name="title_2" id="title_2" required>
+              </label>
+              </div>
+              <div class="form-group">
+              <label class="control-label" for="length_2">
+                Minutáž skladby:
+                <input class="form-control" type="time" name="length_2" id="length_2" required maxlength="5" minlength="5">
+              </label>
+              </div>
+              <button type="button" class="arrow arrow-prev" onclick="goTo(2)">
+                <</button> <button type="button" class="arrow arrow-next" onclick="goTo(4)">>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="tab">
-          <input type="radio" name="css-tabs" id="tab-5" class="tab-switch" disabled>
-          <label for="tab-5" class="tab-label">3. skladba</label>
-          <div class="tab-content">
-            <h3>Ľubovoľný výber skladby príslušnej úrovne</h3>
-            <label class="control-label" for="composer_3">
-              Autor:
-              <input class="form-control" type="text" name="composer_3" id="composer_3">
-            </label>
-            <label class="control-label" for="title_3">
-              Názov skladby:
-              <input class="form-control" type="text" name="title_3" id="title_3">
-            </label>
-            <label class="control-label" for="length_3">
-              Minutáž skladby:
-              <input class="form-control" type="time" name="length_3" id="length_3">
-            </label>
-            <button type="button" class="arrow arrow-prev" onclick="goTo(3)"><</button>
-            <button type="button" class="arrow arrow-next" onclick="goTo(5)">>
-            </button>
+          <div class="tab">
+            <input type="radio" name="css-tabs" id="tab-5" class="tab-switch" disabled>
+            <label for="tab-5" class="tab-label">3. skladba</label>
+            <div class="tab-content tab-content-MD">
+              <h3>Ľubovoľný výber skladby príslušnej úrovne</h3>
+              <div class="form-group">
+              <label class="control-label" for="composer_3">
+                Autor:
+                <input class="form-control" type="text" name="composer_3" id="composer_3" required>
+              </label>
+              </div>
+              <div class="form-group">
+              <label class="control-label" for="title_3">
+                Názov skladby:
+                <input class="form-control" type="text" name="title_3" id="title_3" required>
+              </label>
+              </div>
+              <div class="form-group">
+              <label class="control-label" for="length_3">
+                Minutáž skladby:
+                <input class="form-control" type="time" name="length_3" id="length_3" required minlength="5" maxlength="5">
+              </label>
+              </div>
+              <button type="button" class="arrow arrow-prev" onclick="goTo(3)">
+                <</button> <button type="button" class="arrow arrow-next" onclick="goTo(5)">>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="tab">
-          <input type="radio" name="css-tabs" id="tab-6" class="tab-switch" disabled>
-          <label for="tab-6" class="tab-label">Potvrdenie</label>
-          <div class="tab-content">
-            <input class="form-control" type="hidden" name="total_length" id="total_length">
-            <label class="control-label" for="email">
-              Email pre potvrdenie prihlášky:
-              <input class="form-control" type="email" name="email" id="email">
-            </label>
+          <div class="tab">
+            <input type="radio" name="css-tabs" id="tab-6" class="tab-switch" disabled>
+            <label for="tab-6" class="tab-label">Potvrdenie</label>
+            <div class="tab-content">
+              <input class="form-control" type="hidden" name="total_length" id="total_length">
+              <label class="control-label" for="email">
+                Email pre potvrdenie prihlášky:
+                <input class="form-control" type="email" name="email" id="email" required>
+              </label>
 
-            <button type="reset" class="btn btn-secondary">Vymazať</button>
-            <button type="submit" class="btn btn-primary" id="postForm">Odoslať</button>
-            <button type="button" class="arrow arrow-prev" onclick="goTo(4)"><</button>
+              <button type="reset" class="btn btn-secondary" style="position: absolute; left: 1%; top: 50%;">Vymazať</button>
+              <button type="submit" class="btn btn-primary" id="postForm" style="position: absolute; right: 1%; top: 50%;">Odoslať</button>
+              <button type="button" class="arrow arrow-prev" onclick="goTo(4)">
+                <</button> </div> </div> <div class="tab">
+                  <input type="radio" name="css-tabs" id="tab-7" class="tab-switch" disabled>
+                  <label for="tab-7" class="tab-label">Hotovo</label>
+                  <div class="tab-content tab-content-MD">
+                    <h2>Odoslanie prihlášky bolo úspešné</h2>
+                    <h3>Potvrdenie prihlášky vám príjde do mailu. V prípade, že sa tak nestane, kontaktujte SZUŠ</h3>
+                    <button type="reset" onclick="clearCategories()" style="position: absolute; right: 1%; top: 70%;">Nová prihláška</button>
+                  </div>
+            </div>
+            <div class="tab">
+              <input type="radio" name="css-tabs" id="tab-8" class="tab-switch" disabled>
+              <label for="tab-8" class="tab-label">Chyba</label>
+              <div class="tab-content tab-content-MD">
+                <h2>Pri odosielaní prihlášky došlo k neočakávanej chybe</h2>
+                <h3>Skontrolujte si emailovú adresu. Ak ste neobdržali prihlášku, skúste to znova</h3>
+                <button type="button" class="arrow arrow-prev" onclick="goTo(5)">
+                  <</button>
+                <button type="reset" onclick="clearCategories()" style="position: absolute; right: 1%; top: 70%;">Nová prihláška</button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="tab">
-          <input type="radio" name="css-tabs" id="tab-7" class="tab-switch" disabled>
-          <label for="tab-7" class="tab-label">Hotovo</label>
-          <div class="tab-content">
-            <h2>Odoslanie prihlášky bolo úspešné</h2>
-            <button type="reset" onclick="clearCategories()">Nová prihláška</button>
-          </div>
-        </div>
-      </div>
-  </form>
-</div>
+    </form>
+  </div>
+  <footer>
+    <div class="oneline-text-left"><a href="https://umelecka.skolajanos.sk/euromusic/euromusic-2020/" target="_blank"
+        title="Euromusic 2020">EuroMusic 2020</a></div>
+    <div class="oneline-text-right"><a href="https://umelecka.skolajanos.sk/" target="_blank" title="SZUS Janos">SZUŠ
+        Jánoš</a></div>
+  </footer>
   <script src="./app.js"></script>
 </body>
 
