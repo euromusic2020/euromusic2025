@@ -39,7 +39,7 @@
               <div class="form-group">
                 <label class="control-label" for="day_of_competition">
                   Deň súťaže:
-                  <select name="day_of_competition" id="day_of_competition" onchange="changeCategories()" required>
+                  <select name="day_of_competition" id="day_of_competition" onchange="changeCategories()" required autofocus>
                     <option disabled selected value="">-----Vyberte možnosť-----</option>
                     <option value="6">6.máj 2020 (streda), RUŽOMBEROK</option>
                     <option value="18">18.máj 2020 (pondelok), RUŽOMBEROK</option>
@@ -70,15 +70,15 @@
                 </label>
               </div>
               <div class="form-group">
-                <label class="control-label" for="grade">
+                <label class="control-label" for="level">
                   Ročník žiaka v SZUŠ Jánoš:
-                  <input type="text" name="grade" id="grade" required>
+                  <input type="text" name="level" id="level" placeholder="R/Č/S" title="Zadávajte v tvare ročník/časť/stupeň" required>
                 </label>
               </div>
               <div class="form-group">
-                <label class="control-label" for="level">
-                  Úroveň:
-                  <input class="form-control" type="text" name="level" id="level" required>
+                <label class="control-label" for="grade">
+                  Úroveň (Grade):
+                  <input class="form-control" type="text" name="grade" id="grade" required>
                 </label>
                 <label class="control-label" for="birth_date">
                   Dátum narodenia:
@@ -125,7 +125,7 @@
               <label class="control-label" for="length_1">
                 Minutáž skladby:
                 <input class="form-control" name="length_1" id="length_1" type="time" required 
-                 maxlength="5" minlength="5">
+                 maxlength="8" minlength="5">
               </label>
               </div>
               <button type="button" class="arrow arrow-prev" onclick="goTo(1)">
@@ -154,7 +154,7 @@
               <div class="form-group">
               <label class="control-label" for="length_2">
                 Minutáž skladby:
-                <input class="form-control" type="time" name="length_2" id="length_2" required maxlength="5" minlength="5">
+                <input class="form-control" type="time" name="length_2" id="length_2" required maxlength="8" minlength="5">
               </label>
               </div>
               <button type="button" class="arrow arrow-prev" onclick="goTo(2)">
@@ -182,7 +182,7 @@
               <div class="form-group">
               <label class="control-label" for="length_3">
                 Minutáž skladby:
-                <input class="form-control" type="time" name="length_3" id="length_3" required minlength="5" maxlength="5">
+                <input class="form-control" type="time" name="length_3" id="length_3" required minlength="5" maxlength="8">
               </label>
               </div>
               <button type="button" class="arrow arrow-prev" onclick="goTo(3)">

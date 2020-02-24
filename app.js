@@ -4,16 +4,11 @@ $(document).ready(function () {
     removeCorepetitor();
     setValidationMessages();
     $('#myForm')
-        .on('keydown', 'input', function (event) {
-            if (event.which == 13) {
-                event.preventDefault();
-            }
-        })
         .on('submit', function (e) {
             // Prevent form submission
             e.preventDefault();
-            $('#age').val(_calculateAge(new Date($('#birth_date').val())));
-            $('#total_length').val(_calculateDuration([$('#length_1').val(), $('#length_2').val(), $('#length_3').val()]));
+            setCorrectValues();
+
             // Get the form instance
             var $form = $(e.target);
             $form.validate();
@@ -31,7 +26,7 @@ $(document).ready(function () {
                 .fail(function (data) {
                     console.warn("Error! Data: ", data);
                     // HACK - check if browser is Safari - and redirect even if fail b/c we know the form submits.
-                    if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
+                    if (navigator.userAgent.search("Safari") >= 0 || navigator.userAgent.search("Chrome") >= 0) {
                         goTo(6);
                         // alert("Browser is Safari -- we get an error, but the form still submits -- continue.");             
                     } else {
@@ -40,14 +35,76 @@ $(document).ready(function () {
                     stopLoading();
                 });
         });
+}).on('keydown', function (event) {
+    if ($(event.target).is('input')) {
+        return;
+    }
+    currentPosition = ($('.tab-switch').index($('.tab-switch:checked')));
+    switch (event.which) {
+        case 39: // right arrow
+            if (currentPosition > 4) {
+                break;
+            }
+            $('.arrow-next')[0].focus();
+            goTo(currentPosition + 1);
+            event.preventDefault();
+            break;
+        case 37: // left arrow
+            if (currentPosition !== 0) {
+                goTo(currentPosition - 1);
+                event.preventDefault();
+                $('.arrow-prev')[0].focus();
+            }
+            break;
+    }
 });
 
+let currentPosition;
 
+$('input:not(.tab-switch)').on('keydown', function (event) {
+    let index = $("input:not(.tab-switch)").index(this);
+    const lastInputs = [4, 5, 9, 12, 15, 16];
+    switch (event.which) {
+        case 13:
+            event.preventDefault();
+            if (lastInputs.indexOf(index) !== -1 && currentPosition < 5) {
+                console.log('go to ', currentPosition + 1);
+                goTo(currentPosition + 1);
+                this.blur();
+                break;
+            }
+            if ($(this).is('input[type="date"], input[type="time"]')) {
+                $("input:not(.tab-switch)").eq(index + 1).focus();
+            }
+            case 40: // down
+                if ($(this).is('input[type="date"], input[type="time"]')) {
+                    break;
+                }
+                $("input:not(.tab-switch)").eq(index + 1).focus();
+                break;
+            case 38: //up
+                if ($(this).is('input[type="date"], input[type="time"]')) {
+                    break;
+                }
+                if (index !== 0) {
+                    $("input:not(.tab-switch)").eq(index - 1).focus();
+                }
+                break;
 
+    }
+});
+
+function setCorrectValues() {
+    $('#age').val(_calculateAge(new Date($('#birth_date').val())));
+    $('#length_1').val($('#length_1').val().substr(0, 5));
+    $('#length_2').val($('#length_2').val().substr(0, 5));
+    $('#length_3').val($('#length_3').val().substr(0, 5));
+    $('#total_length').val(_calculateDuration([$('#length_1').val(), $('#length_2').val(), $('#length_3').val()]));
+}
 let switches = document.getElementsByClassName('tab-switch');
 
 function goTo(position) {
-    const currentPosition = ($('.tab-switch').index($('.tab-switch:checked')));
+    currentPosition = ($('.tab-switch').index($('.tab-switch:checked')));
     if ($('.tab-switch')[position].disabled && currentPosition <= position) {
         let validMove = true;
         $('.tab-switch:checked').next().next().find('select').each(function () {
@@ -64,6 +121,10 @@ function goTo(position) {
             }
 
         });
+        // allow move to success/error tab
+        if (position > 5) {
+            validMove = true;
+        }
         if (!validMove) {
             return;
         }
@@ -76,6 +137,7 @@ function goTo(position) {
     switches[position].checked = true;
     switches[position].disabled = false;
     $('.tab-switch:checked').next().next()[0].scrollIntoView();
+    currentPosition++;
 }
 
 let selectedDate = document.getElementById('day_of_competition');
@@ -180,7 +242,6 @@ function setValidationMessages() {
 }
 
 function _calculateDuration(inputs) {
-    console.log(inputs[0], ' and ', inputs[1], ' and ', inputs[2]);
     let totalSeconds = 0;
     inputs.forEach(input => {
         const minutes = input.split(':')[0];
@@ -201,9 +262,7 @@ function _calculateAge(birthday) { // birthday is a date
 function formatInput(event) {
     let $target = $(event.target);
     const currValue = $target.val();
-    console.log(currValue, $target.val().match('^\d{2}$'));
     if ($target.val().match(/^\d{2}$/)) {
-        console.log('match');
         $target.val(currValue + ':');
     }
 }
@@ -225,3 +284,13 @@ function setInputFilter(textbox, inputFilter) {
         });
     });
 }
+
+$.fn.isInViewport = function () {
+    var elementTop = $(this).offset().top;
+    var elementBottom = elementTop + $(this).outerHeight();
+
+    var viewportTop = $(window).scrollTop();
+    var viewportBottom = viewportTop + $(window).height();
+
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+};
