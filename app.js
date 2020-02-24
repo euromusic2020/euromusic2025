@@ -250,7 +250,7 @@ function _calculateDuration(inputs) {
     })
     let totalMinutes = totalSeconds / 60;
     totalSeconds = totalSeconds % 60;
-    return Math.floor(totalMinutes) + ':' + totalSeconds;
+    return Math.floor(totalMinutes) + ':' + (totalSeconds >= 10 ? totalSeconds : '0' + totalSeconds);
 }
 
 function _calculateAge(birthday) { // birthday is a date
