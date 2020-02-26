@@ -95,11 +95,12 @@ $('input:not(.tab-switch)').on('keydown', function (event) {
 });
 
 function setCorrectValues() {
-    $('#age').val(_calculateAge(new Date($('#birth_date').val())));
+    $('#age').val(_calculateAge(new Date($('#birth_date').val()), getDate($('#day_of_competition').val())));
     $('#length_1').val($('#length_1').val().substr(0, 5));
     $('#length_2').val($('#length_2').val().substr(0, 5));
     $('#length_3').val($('#length_3').val().substr(0, 5));
     $('#total_length').val(_calculateDuration([$('#length_1').val(), $('#length_2').val(), $('#length_3').val()]));
+
 }
 let switches = document.getElementsByClassName('tab-switch');
 
@@ -253,10 +254,14 @@ function _calculateDuration(inputs) {
     return Math.floor(totalMinutes) + ':' + (totalSeconds >= 10 ? totalSeconds : '0' + totalSeconds);
 }
 
-function _calculateAge(birthday) { // birthday is a date
-    var ageDifMs = Date.now() - birthday.getTime();
+function _calculateAge(birthday, competitionDay) { // birthday is a date
+    var ageDifMs = competitionDay.getTime() - birthday.getTime();
     var ageDate = new Date(ageDifMs); // miliseconds from epoch
     return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+
+function getDate(date) {
+    return new Date('05/' + date + '/2020');
 }
 
 function formatInput(event) {
