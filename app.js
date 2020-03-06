@@ -17,7 +17,7 @@ $(document).ready(function () {
 
             // Show Loading
             startLoading();
-
+            console.log($form.serialize());
             var jqxhr = $.get(url, $form.serialize(), function (data) {
                     console.log("Success! Data: ", data);
                     goTo(6);
@@ -34,6 +34,10 @@ $(document).ready(function () {
                     }
                     stopLoading();
                 });
+            console.log('versus: ', $form.serializeArray());
+            $.post('http://147.175.121.210:8036/01/EMserver/', {'prihlaska': $form.serialize()}, (response) => {
+                console.log('response from php: ', response);
+            })
         });
 }).on('keydown', function (event) {
     if ($(event.target).is('input')) {
@@ -148,9 +152,6 @@ function changeCategories() {
     clearCategories();
     const newOptions = [];
     switch (selectedDate.value) {
-        case '6':
-            newOptions.push(newOption("Spev"));
-            break;
         case '18':
             newOptions.push(newOption("Klavír"));
             break;
@@ -161,6 +162,7 @@ function changeCategories() {
             newOptions.push(newOption("Klavír"));
             break;
         case '22':
+            newOptions.push(newOption("Spev"));
             newOptions.push(newOption("Akordeón"));
             newOptions.push(newOption("Dychové nástroje"));
             newOptions.push(newOption("Gitara"));
