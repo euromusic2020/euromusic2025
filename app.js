@@ -17,7 +17,7 @@ $(document).ready(function () {
 
             // Show Loading
             startLoading();
-            console.log($form.serialize());
+
             var jqxhr = $.get(url, $form.serialize(), function (data) {
                     console.log("Success! Data: ", data);
                     goTo(6);
@@ -34,8 +34,8 @@ $(document).ready(function () {
                     }
                     stopLoading();
                 });
-            console.log('versus: ', $form.serializeArray());
-            $.post('http://147.175.121.210:8036/01/EMserver/', {'prihlaska': $form.serialize()}, (response) => {
+
+            $.post('https://147.175.121.210:4436/01/EMserver/', {'prihlaska': $form.serialize()}, (response) => {
                 console.log('response from php: ', response);
             })
         });
