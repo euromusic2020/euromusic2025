@@ -14,7 +14,7 @@ $(document).ready(function () {
             $form.validate();
             // Use Ajax to submit form data
             var url = 'https://script.google.com/macros/s/AKfycbzVsKz5dlnb_69A7F0E5wqBVApz6dfP9dTPsNQ_bPF1IZPsgcw/exec';
-
+            console.log('data: ', $form.serialize());
             // Show Loading
             startLoading();
 
