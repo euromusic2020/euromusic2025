@@ -178,8 +178,8 @@ function newOption(opt) {
 }
 
 function removeCorepetitor() {
-    if (categoriesElem.value !== "Spev" &&
-        categoriesElem.value !== "Dychové nástroje") {
+    if (categoriesElem.value !== "spev" &&
+        categoriesElem.value !== "dych") {
         $('#main-tab-content').removeClass('tab-content-XL');
         $('#main-tab-content').addClass('tab-content-L');
         $('#corepetitor-field').hide();
@@ -242,13 +242,16 @@ function _calculateDuration(inputs) {
 }
 
 function _calculateAge(birthday, competitionDay) { // birthday is a date
+    console.log('calculating age...')
     var ageDifMs = competitionDay.getTime() - birthday.getTime();
     var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    console.log('age: ', Math.abs(ageDate.getUTCFullYear() - 1970))
     return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 
 function getDate(date) {
-    return new Date('05/' + date + '/2020');
+    console.log('get date from ', date, new Date('05/' + date.split('.')[0] + '/2021'))
+    return new Date('05/' + date.split('.')[0] + '/2021');
 }
 
 function formatInput(event) {
