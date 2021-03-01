@@ -3,6 +3,7 @@ $(document).ready(function () {
     stopLoading();
     removeCorepetitor();
     setValidationMessages();
+    addTeachers();
     $('#myForm')
         .on('submit', function (e) {
             // Prevent form submission
@@ -113,14 +114,13 @@ function goTo(position) {
     if ($('.tab-switch')[position].disabled && currentPosition <= position) {
         let validMove = true;
         $('.tab-switch:checked').next().next().find('select').each(function () {
-
             if (!($(this).is(':valid'))) {
                 validMove = false;
                 $(this).valid();
             }
         });
         $('.tab-switch:checked').next().next().find('input').each(function () {
-            if (!($(this).is(':valid'))) {
+            if (!($(this).is(':valid')) && $(this)[0] !== $('#day_of_competition')[0]) {
                 validMove = false;
                 $(this).valid();
             }
@@ -148,31 +148,26 @@ function goTo(position) {
 let selectedDate = document.getElementById('day_of_competition');
 let categoriesElem = document.getElementById('category');
 
-function changeCategories() {
-    clearCategories();
-    const newOptions = [];
-    switch (selectedDate.value) {
-        case '18':
-            newOptions.push(newOption("Klavír"));
-            break;
-        case '19':
-            newOptions.push(newOption("Akordeón"));
-            newOptions.push(newOption("Dychové nástroje"));
-            newOptions.push(newOption("Gitara"));
-            newOptions.push(newOption("Klavír"));
-            break;
-        case '22':
-            newOptions.push(newOption("Spev"));
-            newOptions.push(newOption("Akordeón"));
-            newOptions.push(newOption("Dychové nástroje"));
-            newOptions.push(newOption("Gitara"));
-            break;
+function changeCategory() {
+    switch($('#category option:selected').val()) {
+    case 'spev':
+        $('#day_of_competition').val('12. máj 2021 (streda)')
+        break;
+    case 'klavir':
+        $('#day_of_competition').val('17. máj 2021 (pondelok)')
+        break;
+    case 'akordeon':
+    case 'dych':
+        $('#day_of_competition').val('18. máj 2021 (utorok)')
+        break;
+    case 'gitara':
+        $('#day_of_competition').val('21. máj 2021 (piatok)')
+        break;
+    default:
+        console.log('somethings wrong: ', $('#category option:selected').val())
     }
-    newOptions.forEach(opt => {
-        categoriesElem.add(opt);
-    })
-    categoriesElem.onchange();
     $(categoriesElem).valid();
+    
 }
 
 function newOption(opt) {
@@ -180,16 +175,6 @@ function newOption(opt) {
     option.text = opt;
     option.value = opt;
     return option;
-}
-
-function resetForm() {
-    clearCategories();
-}
-
-function clearCategories() {
-    for (let i = categoriesElem.length; i >= 0; i--) {
-        categoriesElem.options[i] = null;
-    }
 }
 
 function removeCorepetitor() {
@@ -301,3 +286,42 @@ $.fn.isInViewport = function () {
 
     return elementBottom > viewportTop && elementTop < viewportBottom;
 };
+
+function addTeachers() {
+    const teachers = [
+        'Babinská Lenka',
+        'Bačkor Miroslav',
+        'Halušková Monika',
+        'Jánošová Anna',
+        'Kuruc Miroslav',
+        'Lajčiak František',
+        'Mliečková Katarína',
+        'Mudička Juraj',
+        'Mudičková Miroslava',
+        'Púčeková Lucia',
+        'Poledňa Miroslav',
+        'Glembová Lívia',
+        'Glovaťáková Jana',
+        'Gottsteinová Dana',
+        'Hrbčeková Jana',
+        'Khakimova Azhar',
+        'Kočalka Tomáš',
+        'Kochlicová Dominika',
+        'Kožuch Patrik',
+        'Król Michal',
+        'Maga Benjamín',
+        'Mišenko Jozef',
+        'Pašková Monika',
+        'Procházková Martina',
+        'Pudišová Katarína',
+        'Slavkovská Ivana',
+        'Timková Terézia',
+        'Žufka Jordán',
+        'Fulla Ján',
+        'Khakimova Azhar',
+        'Uličný Tomáš',
+    ];
+    $.each(teachers, function(i, p) {
+        $('#teacher').append($('<option></option>').val(p).html(p));
+    });
+}

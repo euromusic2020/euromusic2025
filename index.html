@@ -37,22 +37,22 @@
             <label for="tab-1" class="tab-label">Registrácia</label>
             <div class="tab-content">
               <div class="form-group">
-                <label class="control-label" for="day_of_competition">
-                  Deň súťaže:
-                  <select name="day_of_competition" id="day_of_competition" onchange="changeCategories()" required autofocus>
+                <label class="control-label" for="category">
+                  Kategória:
+                  <select name="category" id="category" required onchange="changeCategory()">
                     <option disabled selected value="">-----Vyberte možnosť-----</option>
-                    <option value="12">12. máj 2021 (streda) SPEV</option>
-                    <option value="17">17. máj 2021 (pondelok) KLAVÍR</option>
-                    <option value="18">18. máj 2021 (utorok) AKORDEÓN, DYCHOVÉ NÁSTROJE</option>
-                    <option value="21">21. máj 2021 (piatok) GITARA</option>
+                    <option value="spev">SPEV</option>
+                    <option value="klavir">KLAVÍR</option>
+                    <option value="akordeon">AKORDEÓN</option>
+                    <option value="dych">DYCHOVÉ NÁSTROJE</option>
+                    <option value="gitara">GITARA</option>
                   </select>
                 </label>
               </div>
               <div class="form-group">
-                <label class="control-label" for="category">
-                  Kategória:
-                  <select name="category" id="category" onchange=removeCorepetitor() required>
-                  </select>
+                <label class="control-label" for="day_of_competition">
+                  Deň súťaže:
+                  <input type="text" class="form-control" name="day_of_competition" id="day_of_competition" readonly>
                 </label>
               </div>
               <!-- <button type="button" class="arrow arrow-prev" onclick="goTo(0)"><</button> -->
@@ -99,7 +99,9 @@
               <div class="form-group">
                 <label class="control-label" for="teacher">
                   Pedagóg:
-                  <input class="form-control" type="text" name="teacher" id="teacher" required>
+                  <select name="teacher" id="teacher" required>
+                    <option disabled selected value="">-----Vyberte možnosť-----</option>
+                  </select>
                 </label>
                 <label class="control-label" for="corepetitor">
                   <span id="corepetitor-field">
@@ -232,7 +234,7 @@
                 <h3>Skontrolujte si emailovú adresu. Ak ste neobdržali prihlášku, skúste to znova, alebo nás kontaktujte na adrese sutazeuromusic@gmail.com.</h3>
                 <button type="button" class="arrow arrow-prev" onclick="goTo(5)">
                   <</button>
-                <button type="reset" onclick="clearCategories()" style="position: absolute; right: 1%; top: 70%;">Nová prihláška</button>
+                <button type="reset" style="position: absolute; right: 1%; top: 70%;">Nová prihláška</button>
               </div>
             </div>
           </div>
