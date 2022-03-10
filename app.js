@@ -36,7 +36,9 @@ $(document).ready(function () {
                     stopLoading();
                 });
 
-            $.post('https://147.175.121.210:4436/01/EMserver/', {'prihlaska': $form.serialize()}, (response) => {
+            $.post('https://147.175.121.210:4436/01/EMserver/', {
+                'prihlaska': $form.serialize()
+            }, (response) => {
                 console.log('response from php: ', response);
             })
         });
@@ -148,26 +150,67 @@ function goTo(position) {
 let selectedDate = document.getElementById('day_of_competition');
 let categoriesElem = document.getElementById('category');
 
+// function changeCategoryOld() {
+//     switch ($('#category option:selected').val()) {
+//         case 'flauta_priecna':
+//         case 'flauta_zobcova':
+//             $('#day_of_competition').val('16. máj 2022 (pondelok)')
+//             break;
+//         case 'akordeon':
+//         case 'heligonka':
+//             $('#day_of_competition').val('17. máj 2022 (utorok)')
+//             break;
+//         case 'spev':
+//             $('#day_of_competition').val('18. máj 2022 (streda)')
+//             break;
+//         case 'klavir':
+//             $('#day_of_competition').val('17. máj 2021 (pondelok)')
+//             break;
+//         case 'gitara':
+//             $('#day_of_competition').val('21. máj 2021 (piatok)')
+//             break;
+//         default:
+//             console.log('somethings wrong: ', $('#category option:selected').val())
+//     }
+//     $(categoriesElem).valid();
+// }
+
 function changeCategory() {
-    switch($('#category option:selected').val()) {
-    case 'spev':
-        $('#day_of_competition').val('12. máj 2021 (streda)')
-        break;
-    case 'klavir':
-        $('#day_of_competition').val('17. máj 2021 (pondelok)')
-        break;
-    case 'akordeon':
-    case 'dych':
-        $('#day_of_competition').val('18. máj 2021 (utorok)')
-        break;
-    case 'gitara':
-        $('#day_of_competition').val('21. máj 2021 (piatok)')
-        break;
-    default:
-        console.log('somethings wrong: ', $('#category option:selected').val())
+    const availableDays = [];
+    switch ($('#category option:selected').val()) {
+        case 'flauta_priecna':
+        case 'flauta_zobcova':
+            availableDays.push('16. máj 2022 (pondelok), RUŽOMBEROK');
+            break;
+        case 'akordeon':
+        case 'heligonka':
+            availableDays.push('17. máj 2022 (utorok), RUŽOMBEROK');
+            break;
+        case 'spev':
+            availableDays.push('18. máj 2022 (streda), RUŽOMBEROK');
+            break;
+        case 'gitara':
+            availableDays.push('19. máj 2022 (štvrtok), HRUŠTÍN');
+            availableDays.push('20. máj 2022 (piatok), RUŽOMBEROK');
+            break;
+        case 'klavir':
+            availableDays.push('23. máj 2022 (pondelok), RUŽOMBEROK');
+            availableDays.push('24. máj 2022 (utorok), HRUŠTÍN');
+            break;
+        default:
+            console.log('somethings wrong: ', $('#category option:selected').val())
     }
-    $(categoriesElem).valid();
-    
+    setAvailableDays(availableDays);
+}
+
+function setAvailableDays(days) {
+    let $el = $('#day_of_competition');
+    $('#day_of_competition option:gt(0)').remove(); // remove all options, but not the first 
+    $.each(days, function (i, value) {
+        $el.append($("<option></option>")
+            .attr("value", value).text(value));
+    });
+    $el[0].selectedIndex = 1;
 }
 
 function newOption(opt) {
@@ -250,8 +293,8 @@ function _calculateAge(birthday, competitionDay) { // birthday is a date
 }
 
 function getDate(date) {
-    console.log('get date from ', date, new Date('05/' + date.split('.')[0] + '/2021'))
-    return new Date('05/' + date.split('.')[0] + '/2021');
+    console.log('get date from ', date, new Date('05/' + date.split('.')[0] + '/2022'))
+    return new Date('05/' + date.split('.')[0] + '/2022');
 }
 
 function formatInput(event) {
@@ -294,13 +337,14 @@ function addTeachers() {
     const teachers = [
         'Babinská Lenka',
         'Bačkor Miroslav',
-        'Fulla Ján',
-        'Glembová Lívia',
+        'Foltin Jozef',
         'Glovaťáková Jana',
         'Gottsteinová Dana',
         'Halušková Monika',
         'Hrbčeková Jana',
+        'Jakabová Michaela',
         'Jánošová Anna',
+        'Katreniaková Karin',
         'Khakimova Azhar',
         'Kočalka Tomáš',
         'Kochlicová Dominika',
@@ -308,7 +352,7 @@ function addTeachers() {
         'Król Michal',
         'Kuruc Miroslav',
         'Lajčiak František',
-        'Maga Benjamín',
+        'Marcinová Timea',
         'Mišenko Jozef',
         'Mliečková Katarína',
         'Mudička Juraj',
@@ -317,13 +361,14 @@ function addTeachers() {
         'Poledňa Miroslav',
         'Procházková Martina',
         'Púčeková Lucia',
-        'Pudišová Katarína',
+        'Sedláčková Viera',
         'Slavkovská Ivana',
         'Timková Terézia',
+        'Trimaj Ivan',
         'Uličný Tomáš',
         'Žufka Jordán',
     ];
-    $.each(teachers, function(i, p) {
+    $.each(teachers, function (i, p) {
         $('#teacher').append($('<option></option>').val(p).html(p));
     });
 }

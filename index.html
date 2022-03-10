@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Prihláška Euromusic 2021</title>
+  <title>Prihláška Euromusic 2022</title>
 
   <link rel="stylesheet" href="./styles.css">
   <!-- jQuery and Bootstrap -->
@@ -28,7 +28,7 @@
     <div></div>
   </div>
   <div id="container" class="overlay">
-    <img src="./assets/logo.png" alt="Euromusic 2021" id="logo">
+    <img src="./assets/logo.png" alt="Euromusic 2022" id="logo">
     <form id="myForm" role="form" autocomplete="off">
       <div class="wrapper">
         <div class="tabs">
@@ -41,18 +41,23 @@
                   Kategória:
                   <select name="category" id="category" required onchange="changeCategory()">
                     <option disabled selected value="">-----Vyberte možnosť-----</option>
-                    <option value="spev">SPEV</option>
-                    <option value="klavir">KLAVÍR</option>
+                    <option value="flauta_priecna">PRIEČNA FLAUTA</option>
+                    <option value="flauta_zobcova">ZOBCOVÁ FLAUTA</option>
                     <option value="akordeon">AKORDEÓN</option>
-                    <option value="dych">DYCHOVÉ NÁSTROJE</option>
+                    <option value="heligonka">HELIGÓNKA</option>
+                    <option value="spev">SPEV</option>
                     <option value="gitara">GITARA</option>
+                    <option value="klavir">KLAVÍR</option>
                   </select>
                 </label>
               </div>
               <div class="form-group">
                 <label class="control-label" for="day_of_competition">
                   Deň súťaže:
-                  <input type="text" class="form-control" name="day_of_competition" id="day_of_competition" readonly>
+                  <select name="day_of_competition" id="day_of_competition">
+                    <option disabled selected value="">-----Vyberte možnosť-----</option>
+                  </select>
+                  <!-- <input type="text" class="form-control" name="day_of_competition" id="day_of_competition" readonly> -->
                 </label>
               </div>
               <!-- <button type="button" class="arrow arrow-prev" onclick="goTo(0)"><</button> -->
@@ -93,7 +98,7 @@
                 </label>
                 <label class="control-label" for="birth_date">
                   Dátum narodenia:
-                  <input class="form-control" type="date" name="birth_date" id="birth_date" required min="1990-01-01" max="2021-01-01">
+                  <input class="form-control" type="date" name="birth_date" id="birth_date" required min="1990-01-01" max="2022-01-01">
                 </label>
               </div>
               <div class="form-group">
@@ -241,8 +246,8 @@
     </form>
   </div>
   <footer>
-    <div class="oneline-text-left"><a href="https://umelecka.skolajanos.sk/euromusic/euromusic-2021/" target="_blank"
-        title="Euromusic 2021">EuroMusic 2021</a></div>
+    <div class="oneline-text-left"><a href="https://umelecka.skolajanos.sk/euromusic/euromusic-2022/" target="_blank"
+        title="Euromusic 2022">EuroMusic 2022</a></div>
     <div class="oneline-text-right"><a href="https://umelecka.skolajanos.sk/" target="_blank" title="SZUS Janos">SZUŠ
         Jánoš</a></div>
   </footer>
