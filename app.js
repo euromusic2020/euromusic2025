@@ -201,6 +201,39 @@ function changeCategory() {
             console.log('somethings wrong: ', $('#category option:selected').val())
     }
     setAvailableDays(availableDays);
+    setSongTitle($('#category option:selected').val());
+}
+
+function setSongTitle(cat) {
+    const defaultTitle1 = 'Skladba z aktuálneho repertoáru Trinity Guildhall London príslušnej úrovne';
+    const defaultTitle2 = 'Skladba z aktuálneho alebo staršieho repertoáru Trinity Guildhall London príslušnej úrovne';
+    const defaultTitle3 = 'Ľubovoľný výber skladby príslušnej úrovne';
+    const accordeonTitle1 = 'Výber skladby príslušnej úrovne';
+    const accordeonTitle3 = 'Ľudová pieseň v jednoduchšej, prípadne náročnejšej úprave, variácie';
+    const heligonTitle1 = 'Výber piesne príslušnej úrovne';
+    const heligonTitle3 = 'Výber piesne v úprave, variácie, dvojhlas, prípadne trojhlas';
+
+    const $title1 = $('h3#song_title1');
+    const $title2 = $('h3#song_title2');
+    const $title3 = $('h3#song_title3');
+
+    switch (cat) {
+        case 'akordeon':
+            $title1.html(accordeonTitle1);
+            $title2.html(accordeonTitle1);
+            $title3.html(accordeonTitle3);
+            break;
+        case 'heligonka':
+            $title1.html(heligonTitle1);
+            $title2.html(heligonTitle1);
+            $title3.html(heligonTitle3);
+            break;
+        default:
+            $title1.html(defaultTitle1);
+            $title2.html(defaultTitle2);
+            $title3.html(defaultTitle3);
+            break;
+    }
 }
 
 function setAvailableDays(days) {
