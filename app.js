@@ -194,8 +194,8 @@ function changeCategory() {
             availableDays.push('20. máj 2022 (piatok), RUŽOMBEROK');
             break;
         case 'klavir':
+            availableDays.push('19. máj 2022 (štvrtok), HRUŠTÍN');
             availableDays.push('23. máj 2022 (pondelok), RUŽOMBEROK');
-            availableDays.push('24. máj 2022 (utorok), HRUŠTÍN');
             break;
         default:
             console.log('somethings wrong: ', $('#category option:selected').val())
