@@ -150,52 +150,29 @@ function goTo(position) {
 let selectedDate = document.getElementById('day_of_competition');
 let categoriesElem = document.getElementById('category');
 
-// function changeCategoryOld() {
-//     switch ($('#category option:selected').val()) {
-//         case 'flauta_priecna':
-//         case 'flauta_zobcova':
-//             $('#day_of_competition').val('16. máj 2022 (pondelok)')
-//             break;
-//         case 'akordeon':
-//         case 'heligonka':
-//             $('#day_of_competition').val('17. máj 2022 (utorok)')
-//             break;
-//         case 'spev':
-//             $('#day_of_competition').val('18. máj 2022 (streda)')
-//             break;
-//         case 'klavir':
-//             $('#day_of_competition').val('17. máj 2021 (pondelok)')
-//             break;
-//         case 'gitara':
-//             $('#day_of_competition').val('21. máj 2021 (piatok)')
-//             break;
-//         default:
-//             console.log('somethings wrong: ', $('#category option:selected').val())
-//     }
-//     $(categoriesElem).valid();
-// }
-
 function changeCategory() {
     const availableDays = [];
     switch ($('#category option:selected').val()) {
         case 'flauta_priecna':
         case 'flauta_zobcova':
-            availableDays.push('16. máj 2022 (pondelok), RUŽOMBEROK');
+            availableDays.push('12. máj 2023 (piatok), RUŽOMBEROK');
             break;
         case 'akordeon':
         case 'heligonka':
-            availableDays.push('17. máj 2022 (utorok), RUŽOMBEROK');
+            availableDays.push('16. máj 2023 (utorok), RUŽOMBEROK');
+            availableDays.push('17. máj 2023 (streda), HRUŠTÍN');
             break;
         case 'spev':
-            availableDays.push('18. máj 2022 (streda), RUŽOMBEROK');
+            availableDays.push('22. máj 2023 (pondelok), RUŽOMBEROK');
             break;
         case 'gitara':
-            availableDays.push('19. máj 2022 (štvrtok), HRUŠTÍN');
-            availableDays.push('20. máj 2022 (piatok), RUŽOMBEROK');
+            availableDays.push('17. máj 2023 (streda), RUŽOMBEROK');
+            availableDays.push('18. máj 2023 (štvrtok), HRUŠTÍN');
             break;
         case 'klavir':
-            availableDays.push('19. máj 2022 (štvrtok), HRUŠTÍN');
-            availableDays.push('23. máj 2022 (pondelok), RUŽOMBEROK');
+            availableDays.push('18. máj 2023 (štvrtok), HRUŠTÍN');
+            availableDays.push('19. máj 2023 (piatok), RUŽOMBEROK');
+            availableDays.push('23. máj 2023 (utorok), RUŽOMBEROK');
             break;
         default:
             console.log('somethings wrong: ', $('#category option:selected').val())
@@ -326,8 +303,8 @@ function _calculateAge(birthday, competitionDay) { // birthday is a date
 }
 
 function getDate(date) {
-    console.log('get date from ', date, new Date('05/' + date.split('.')[0] + '/2022'))
-    return new Date('05/' + date.split('.')[0] + '/2022');
+    console.log('get date from ', date, new Date('05/' + date.split('.')[0] + '/2023'))
+    return new Date('05/' + date.split('.')[0] + '/2023');
 }
 
 function formatInput(event) {
@@ -371,13 +348,10 @@ function addTeachers() {
         'Babinská Lenka',
         'Bačkor Miroslav',
         'Foltin Jozef',
-        'Glovaťáková Jana',
         'Gottsteinová Dana',
-        'Halušková Monika',
         'Hrbčeková Jana',
         'Jakabová Michaela',
         'Jánošová Anna',
-        'Katreniaková Karin',
         'Khakimova Azhar',
         'Kočalka Tomáš',
         'Kochlicová Dominika',
@@ -393,13 +367,15 @@ function addTeachers() {
         'Pašková Monika',
         'Poledňa Miroslav',
         'Procházková Martina',
-        'Púčeková Lucia',
-        'Sedláčková Viera',
+        'Rázgová Simona',
+        'Ruttkay Juraj',
         'Slavkovská Ivana',
+        'Stolárová Veronika',
+        'Šebová Monika',
         'Timková Terézia',
         'Trimaj Ivan',
         'Uličný Tomáš',
-        'Žufka Jordán',
+        'Žufka Jordán'
     ];
     $.each(teachers, function (i, p) {
         $('#teacher').append($('<option></option>').val(p).html(p));
