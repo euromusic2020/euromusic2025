@@ -232,7 +232,8 @@ function newOption(opt) {
 
 function removeCorepetitor() {
     if (categoriesElem.value !== "spev" &&
-        categoriesElem.value !== "dych") {
+        categoriesElem.value !== "flauta_priecna" &&
+        categoriesElem.value !== "flauta_zobcova") {
         $('#main-tab-content').removeClass('tab-content-XL');
         $('#main-tab-content').addClass('tab-content-L');
         $('#corepetitor-field').hide();
