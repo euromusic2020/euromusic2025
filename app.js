@@ -179,6 +179,7 @@ function changeCategory() {
     }
     setAvailableDays(availableDays);
     setSongTitle($('#category option:selected').val());
+    removeCorepetitor();
 }
 
 function setSongTitle(cat) {
