@@ -14,16 +14,17 @@ $(document).ready(function () {
             var $form = $(e.target);
             $form.validate();
             // Use Ajax to submit form data
-            var url = 'https://script.google.com/macros/s/AKfycbwd8PUhwaA3HhgwcvgGZ0KzyrDsnXf9RCYiQIKbZBAIDKZW6Al1PE66m_kFSJzSE_kt/exec';
+            // Change this after new implementation of 2024
+            var url = 'https://script.google.com/macros/s/AKfycbyeW_gsa2Jz0pGD4EWCbiPpeIqcbHPSQw70tAy7gKNA3RWr8IQdT0ceLd2xF5lyggg/exec';
             console.log('data: ', $form.serialize());
             // Show Loading
             startLoading();
 
             var jqxhr = $.get(url, $form.serialize(), function (data) {
-                    console.log("Success! Data: ", data);
-                    goTo(6);
-                    stopLoading();
-                })
+                console.log("Success! Data: ", data);
+                goTo(6);
+                stopLoading();
+            })
                 .fail(function (data) {
                     console.warn("Error! Data: ", data);
                     // HACK - check if browser is Safari - and redirect even if fail b/c we know the form submits.
@@ -83,26 +84,26 @@ $('input:not(.tab-switch)').on('keydown', function (event) {
             if ($(this).is('input[type="date"], input[type="time"]')) {
                 $("input:not(.tab-switch)").eq(index + 1).focus();
             }
-            case 40: // down
-                if ($(this).is('input[type="date"], input[type="time"]')) {
-                    break;
-                }
-                $("input:not(.tab-switch)").eq(index + 1).focus();
+        case 40: // down
+            if ($(this).is('input[type="date"], input[type="time"]')) {
                 break;
-            case 38: //up
-                if ($(this).is('input[type="date"], input[type="time"]')) {
-                    break;
-                }
-                if (index !== 0) {
-                    $("input:not(.tab-switch)").eq(index - 1).focus();
-                }
+            }
+            $("input:not(.tab-switch)").eq(index + 1).focus();
+            break;
+        case 38: //up
+            if ($(this).is('input[type="date"], input[type="time"]')) {
                 break;
+            }
+            if (index !== 0) {
+                $("input:not(.tab-switch)").eq(index - 1).focus();
+            }
+            break;
 
     }
 });
 
 function setCorrectValues() {
-    $('#age').val(_calculateAge(new Date($('#birth_date').val()), getDate($('#day_of_competition').val())));
+    $('#age').val(_calculateAge(new Date($('#birth_date').val()), getDateOfComp($('#day_of_competition').val())));
     $('#length_1').val($('#length_1').val().substr(0, 5));
     $('#length_2').val($('#length_2').val().substr(0, 5));
     $('#length_3').val($('#length_3').val().substr(0, 5));
@@ -155,30 +156,29 @@ function changeCategory() {
     switch ($('#category option:selected').val()) {
         case 'flauta_priecna':
         case 'flauta_zobcova':
-            availableDays.push('12. máj 2023 (piatok), RUŽOMBEROK');
+            availableDays.push('19. apríl 2024 (piatok), RUŽOMBEROK');
             break;
         case 'akordeon':
         case 'heligonka':
-            availableDays.push('16. máj 2023 (utorok), RUŽOMBEROK');
-            availableDays.push('17. máj 2023 (streda), HRUŠTÍN');
+            availableDays.push('19. apríl 2024 (piatok), RUŽOMBEROK');
+            availableDays.push('23. apríl 2024 (utorok), HRUŠTÍN');
             break;
         case 'spev':
-            availableDays.push('22. máj 2023 (pondelok), RUŽOMBEROK');
+            availableDays.push('29. apríl 2024 (pondelok), RUŽOMBEROK');
             break;
         case 'gitara':
-            availableDays.push('17. máj 2023 (streda), RUŽOMBEROK');
-            availableDays.push('18. máj 2023 (štvrtok), HRUŠTÍN');
+            availableDays.push('23. apríl 2024 (utorok), RUŽOMBEROK');
+            availableDays.push('30. apríl 2024 (utorok), HRUŠTÍN');
             break;
         case 'klavir':
-            availableDays.push('18. máj 2023 (štvrtok), HRUŠTÍN');
-            availableDays.push('19. máj 2023 (piatok), RUŽOMBEROK');
-            availableDays.push('23. máj 2023 (utorok), RUŽOMBEROK');
+            availableDays.push('24. apríl 2024 (streda), HRUŠTÍN');
+            availableDays.push('26. apríl a 30. apríl 2024 (piatok, utorok), RUŽOMBEROK');
             break;
         default:
             console.log('somethings wrong: ', $('#category option:selected').val())
     }
     setAvailableDays(availableDays);
-    setSongTitle($('#category option:selected').val());
+    // setSongTitle($('#category option:selected').val());
     removeCorepetitor();
 }
 
@@ -304,9 +304,11 @@ function _calculateAge(birthday, competitionDay) { // birthday is a date
     return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 
-function getDate(date) {
-    console.log('get date from ', date, new Date('05/' + date.split('.')[0] + '/2023'))
-    return new Date('05/' + date.split('.')[0] + '/2023');
+function getDateOfComp(date) {
+    const monthOfComp = '04/'; // change according to date of competition in 2024
+    const compDate = new Date(monthOfComp + date.split('.')[0] + '/2024');
+    console.log('get date from ', date, compDate);
+    return compDate;
 }
 
 function formatInput(event) {
@@ -349,34 +351,58 @@ function addTeachers() {
     const teachers = [
         'Babinská Lenka',
         'Bačkor Miroslav',
+        'Bubelíni František',
+        'Fábryová Silvia',
         'Foltin Jozef',
+        'Fulová Marcela',
+        'Gállyová Elena',
         'Gottsteinová Dana',
+        'Halaj Štefan',
         'Hrbčeková Jana',
+        'Hvolková Iveta',
         'Jakabová Michaela',
         'Jánošová Anna',
+        'Jánošová Mária',
+        'Kacková Veronika',
         'Khakimova Azhar',
         'Kočalka Tomáš',
         'Kochlicová Dominika',
-        'Kožuch Patrik',
+        'Kováč Peter',
+        'Krivošeková Dagmara',
         'Król Michal',
         'Kuruc Miroslav',
+        'Kušnírová Aneta',
+        'Kuzmová Janka',
+        'Kvietková Soňa',
+        'Lacúchová Katarína',
         'Lajčiak František',
-        'Marcinová Timea',
+        'Marich Kostiantyn',
+        'Matušák Tomáš',
+        'Medek Patrícia',
         'Mišenko Jozef',
+        'Mišiaková Zuzana',
         'Mliečková Katarína',
         'Mudička Juraj',
         'Mudičková Miroslava',
+        'Nepomniashchyi Dmytro',
         'Pašková Monika',
+        'Plešková Anna',
+        'Podmanická Zuzana',
         'Poledňa Miroslav',
+        'Prencipe Alessandra',
         'Procházková Martina',
+        'Púčeková Lucia',
         'Rázgová Simona',
         'Ruttkay Juraj',
         'Slavkovská Ivana',
+        'Stanová Barbora',
         'Stolárová Veronika',
+        'Suroviaková Lucia',
+        'Szolnoki Róbert',
         'Šebová Monika',
         'Timková Terézia',
-        'Trimaj Ivan',
         'Uličný Tomáš',
+        'Zemková Terézia',
         'Žufka Jordán'
     ];
     $.each(teachers, function (i, p) {
