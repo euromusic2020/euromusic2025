@@ -1,3 +1,14 @@
+/**
+ * TODO
+ *  - change every mention of 2024 
+ *  - check and adjust new dates 
+ *  - check and adjust date of competition
+ *  - do the same in app scripts for excel sheet
+ *  - deploy new version of app script
+ *  - use new url from deployed version
+ *  - delete old and create new trigger for new version
+ */
+
 $(document).ready(function () {
     setFilters();
     stopLoading();
