@@ -167,7 +167,7 @@ function changeCategory() {
     switch ($('#category option:selected').val()) {
         case 'flauta_priecna':
         case 'flauta_zobcova':
-            availableDays.push('2. máj 2025 (piatok), RUŽOMBEROK');
+            availableDays.push('9. máj 2025 (piatok), RUŽOMBEROK');
             break;
         case 'akordeon':
         case 'heligonka':
