@@ -172,7 +172,7 @@ function changeCategory() {
         case 'akordeon':
         case 'heligonka':
             availableDays.push('2. máj 2025 (piatok), RUŽOMBEROK');
-            availableDays.push('14.máj 2025 (streda), HRUŠTÍN');
+            availableDays.push('7. máj 2025 (streda), HRUŠTÍN');
             break;
         case 'spev':
             availableDays.push('14. máj 2025 (streda), RUŽOMBEROK');
