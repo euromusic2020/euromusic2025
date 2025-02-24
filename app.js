@@ -26,7 +26,7 @@ $(document).ready(function () {
             $form.validate();
             // Use Ajax to submit form data
             // Change this after new implementation of 2025
-            var url = 'https://script.google.com/macros/s/AKfycbz5BCV2xjU-yWT91B6DZl2GBs2X18ae16dtq54F4DE6zm4IfqGEV9oub456La_VpwCD/exec';
+            var url = 'https://script.google.com/macros/s/AKfycbx3YsJ_OtRIkHsFfwJULt_Lf3rfv0ePMXMRQtXYVYKU4aibwKlrfn2s_P8K0bObChkp/exec';
             console.log('data: ', $form.serialize());
             // Show Loading
             startLoading();
