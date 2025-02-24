@@ -1,6 +1,6 @@
 /**
  * TODO
- *  - change every mention of 2024 
+ *  - change every mention of 2025 
  *  - check and adjust new dates 
  *  - check and adjust date of competition
  *  - do the same in app scripts for excel sheet
@@ -25,8 +25,8 @@ $(document).ready(function () {
             var $form = $(e.target);
             $form.validate();
             // Use Ajax to submit form data
-            // Change this after new implementation of 2024
-            var url = 'https://script.google.com/macros/s/AKfycbyeW_gsa2Jz0pGD4EWCbiPpeIqcbHPSQw70tAy7gKNA3RWr8IQdT0ceLd2xF5lyggg/exec';
+            // Change this after new implementation of 2025
+            var url = 'https://script.google.com/macros/s/AKfycbz5BCV2xjU-yWT91B6DZl2GBs2X18ae16dtq54F4DE6zm4IfqGEV9oub456La_VpwCD/exec';
             console.log('data: ', $form.serialize());
             // Show Loading
             startLoading();
@@ -167,23 +167,22 @@ function changeCategory() {
     switch ($('#category option:selected').val()) {
         case 'flauta_priecna':
         case 'flauta_zobcova':
-            availableDays.push('19. apríl 2024 (piatok), RUŽOMBEROK');
+            availableDays.push('9. máj 2025 (piatok), RUŽOMBEROK');
             break;
         case 'akordeon':
         case 'heligonka':
-            availableDays.push('19. apríl 2024 (piatok), RUŽOMBEROK');
-            availableDays.push('23. apríl 2024 (utorok), HRUŠTÍN');
+            availableDays.push('2. máj 2025 (piatok), RUŽOMBEROK');
+            availableDays.push('7. máj 2025 (streda), HRUŠTÍN');
             break;
         case 'spev':
-            availableDays.push('29. apríl 2024 (pondelok), RUŽOMBEROK');
+            availableDays.push('14. máj 2025 (streda), RUŽOMBEROK');
             break;
         case 'gitara':
-            availableDays.push('23. apríl 2024 (utorok), RUŽOMBEROK');
-            availableDays.push('30. apríl 2024 (utorok), HRUŠTÍN');
+            availableDays.push('13. máj 2025 (utorok), RUŽOMBEROK');
             break;
         case 'klavir':
-            availableDays.push('24. apríl 2024 (streda), HRUŠTÍN');
-            availableDays.push('26. apríl a 30. apríl 2024 (piatok, utorok), RUŽOMBEROK');
+            availableDays.push('14. máj 2025 (streda) HRUŠTÍN');
+            availableDays.push('15. máj a 16. máj 2025 (štvrtok, piatok) RUŽOMBEROK');
             break;
         default:
             console.log('somethings wrong: ', $('#category option:selected').val())
@@ -316,8 +315,8 @@ function _calculateAge(birthday, competitionDay) { // birthday is a date
 }
 
 function getDateOfComp(date) {
-    const monthOfComp = '04/'; // change according to date of competition in 2024
-    const compDate = new Date(monthOfComp + date.split('.')[0] + '/2024');
+    const monthOfComp = '04/'; // change according to date of competition in 2025
+    const compDate = new Date(monthOfComp + date.split('.')[0] + '/2025');
     console.log('get date from ', date, compDate);
     return compDate;
 }
@@ -362,8 +361,8 @@ function addTeachers() {
     const teachers = [
         'Babinská Lenka',
         'Bačkor Miroslav',
+        'Baloh Yulianna',
         'Foltin Jozef',
-        'Gottsteinová Dana',
         'Hrbčeková Jana',
         'Jakabová Michaela',
         'Jánošová Anna',
@@ -372,7 +371,7 @@ function addTeachers() {
         'Kochlicová Dominika',
         'Król Michal',
         'Kuruc Miroslav',
-        'Lajčiak František',
+        'Maderová Vanesa',
         'Marich Kostiantyn',
         'Mišenko Jozef',
         'Mliečková Katarína',
@@ -387,10 +386,12 @@ function addTeachers() {
         'Ruttkay Juraj',
         'Slavkovská Ivana',
         'Stolárová Veronika',
+        'Svečnjak Kristián',
         'Šebová Monika',
+        'Štefaničiaková Elena',
         'Timková Terézia',
-        'Uličný Tomáš',
-        'Žufka Jordán'
+        'Uličná Lucia',
+        'Uličný Tomáš'
     ];
     $.each(teachers, function (i, p) {
         $('#teacher').append($('<option></option>').val(p).html(p));
